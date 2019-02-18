@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 class Desafio:    
 
 # my_string[-1] selects the last character in the string ('o'), and my_string[:-1] selects all of the string excluding the last character ('hell').
@@ -17,32 +18,32 @@ class Desafio:
             # print(palavra)
             i = i + 1
         
-        print (matriz_palavra)
+        return matriz_palavra
 
-    def change_to_matriz(self, matriz_palavra):
-        matriz_palavra = sorted(matriz_palavra) #ordena  a lista em ordem alfabética
-        matriz_palavra = [list(palavra) for palavra in matriz_palavra] #coloca a lista de palavras em uma matriz de letras
-        print (matriz_palavra)
-        # pega_elementos_colunas(matriz_palavra)
+    # def change_to_matriz(self, matriz_palavra):
+    #     matriz_palavra = sorted(matriz_palavra) #ordena  a lista em ordem alfabética
+    #     matriz_palavra = [list(palavra) for palavra in matriz_palavra] #coloca a lista de palavras em uma matriz de letras
+    #     print (matriz_palavra)
+    #     # pega_elementos_colunas(matriz_palavra)
 
-    def pega_elementos_colunas(self, matriz_palavra):
-        tamanho  = int(len(matriz_palavra))
-        list_res_prim = []
-        nu = 0  #nu = variavel que indica a coluna que é pra pegar o elementos
-        while nu < len(matriz_palavra):
-            for i in range(tamanho):
-                list_res_prim.append(matriz_palavra[i][nu])
-                nu = nu + 1  
+    # def pega_elementos_colunas(self, matriz_palavra):
+    #     tamanho  = int(len(matriz_palavra))
+    #     list_res_prim = []
+    #     nu = 0  #nu = variavel que indica a coluna que é pra pegar o elementos
+    #     while nu < len(matriz_palavra):
+    #         for i in range(tamanho):
+    #             list_res_prim.append(matriz_palavra[i][nu])
+    #             nu = nu + 1  
 
-    def pega_ultima_coluna(self, matriz_palavra):
-        tamanho  = int(len(matriz_palavra))
-        list_res_fin = []
-        for i in range(tamanho):
-            list_res_fin.append(matriz_palavra[i][tamanho-1])
+    # def pega_ultima_coluna(self, matriz_palavra):
+    #     tamanho  = int(len(matriz_palavra))
+    #     list_res_fin = []
+    #     for i in range(tamanho):
+    #         list_res_fin.append(matriz_palavra[i][tamanho-1])
     
 
-    def list_concat(self, list_res_fin, list_res_prim):
-        list_concat_alternate = list(''.join(map(''.join, zip(list_res_fin, list_res_prim))))
+    # def list_concat(self, list_res_fin, list_res_prim):
+    #     list_concat_alternate = list(''.join(map(''.join, zip(list_res_fin, list_res_prim))))
         # nu = list_concat() + 1
         # return nu
         
@@ -57,120 +58,191 @@ class Desafio:
     #     for i in range(len(palavra)):
     #         if list_concat_alternate[i] == palavra:
     #             print ("Words Matched"+ list_concat_alternate[i], palavra)
-    
+
+    def encoderrrr(self, matriz_palavra):
+        tamanho  = int(len(matriz_palavra))
+        palavra = 'abracadabra'
+        palavra = list(palavra)
+        matriz_palavra = sorted(matriz_palavra) #ordena  a lista em ordem alfabética
+        matriz_palavra = [list(palavra) for palavra in matriz_palavra] #coloca a lista de palavras em uma matriz de letras
+            
+
+        
+        # print(matriz_palavra)
+
+        for i in range (tamanho):
+            if palavra == matriz_palavra[i]:
+                arquivo = open("testando.out", 'w+')
+                texto = [palavra, i]
+                arquivo.write(str(texto))
+
+        
+        
+    def decoder(self, matriz_palavra, indice):
+        tamanho  = int(len(matriz_palavra))
+        matriz_palavra = sorted(matriz_palavra) #ordena  a lista em ordem alfabética
+        matriz_palavra = [list(palavra) for palavra in matriz_palavra] #coloca a lista de palavras em uma matriz de letras       
+        list_res_fin = []
+        for i in range(tamanho):
+            list_res_fin.append(matriz_palavra[i][tamanho-1])
+        
+        list_primordial = list_res_fin
+        list_concat_alternate = list_res_fin
+        list_res_fin = sorted(list_res_fin)
+        list_concat_alternate = zip(list_concat_alternate, list_res_fin)
+        
+        for i in range(1, 10):
+            list_concat_alternate = sorted(list_concat_alternate)
+            list_concat_alternate = zip(list_primordial, list_concat_alternate)
+        
+        list_concat_alternate = list(list_concat_alternate)
+        list_concat_alternate = sorted(list_concat_alternate)
+        string =  str(list_concat_alternate[indice])
+        resultado = re.findall("([a-zA-Z0-9])", string)
+        print(resultado)
+        resultado = re.findall("([a-zA-Z0-9])", str(resultado))
+        arquivo = open('testando.out', 'w+')
+        arquivo.write(str(resultado))
+
+
+
     def teste(self, matriz_palavra): 
         tamanho  = int(len(matriz_palavra))
-        palavra = 'abracadabraa'
+        palavra = 'abracadabra'
         matriz_palavra = sorted(matriz_palavra) #ordena  a lista em ordem alfabética
         matriz_palavra = [list(palavra) for palavra in matriz_palavra] #coloca a lista de palavras em uma matriz de letras
         # maior =  matriz_palavra[0][0]
         
         #PEGA OS PRIMEIROS ELEMENTOS DAS RESPECTIVAS LINHAS 
-        list_res_prim = []
-        nu = 0
-        for i in range(tamanho):
-            list_res_prim.append(matriz_palavra[i][nu])
-            # nu = nu + 1
+        # list_res_prim = []
+        # nu = 0
+        # for i in range(tamanho):
+        #     list_res_prim.append(matriz_palavra[i][nu])
+        #     # nu = nu + 1
 
-        print (list_res_prim)
+        # print (list_res_prim)
         
-        list_res_sec = []
-        for i in range(tamanho):
-            list_res_sec.append(matriz_palavra[i][1])
+        # list_res_sec = []
+        # for i in range(tamanho):
+        #     list_res_sec.append(matriz_palavra[i][1])
 
-        print(list_res_sec)
+        # print(list_res_sec)
         
         
-        list_res_terc = []
-        for i in range(tamanho):
-            list_res_terc.append(matriz_palavra[i][2])
+        # list_res_terc = []
+        # for i in range(tamanho):
+        #     list_res_terc.append(matriz_palavra[i][2])
 
-        print(list_res_terc)
+        # print(list_res_terc)
         
-        list_res_quar = []
-        for i in range(tamanho):
-            list_res_quar.append(matriz_palavra[i][3])
+        # list_res_quar = []
+        # for i in range(tamanho):
+        #     list_res_quar.append(matriz_palavra[i][3])
 
-        print(list_res_quar)
+        # print(list_res_quar)
         
-        list_res_qui = []
-        for i in range(tamanho):
-            list_res_qui.append(matriz_palavra[i][4])
+        # list_res_qui = []
+        # for i in range(tamanho):
+        #     list_res_qui.append(matriz_palavra[i][4])
 
-        print(list_res_qui)
+        # print(list_res_qui)
         
-        list_res_sext = []
-        for i in range(tamanho):
-            list_res_sext.append(matriz_palavra[i][5])
+        # list_res_sext = []
+        # for i in range(tamanho):
+        #     list_res_sext.append(matriz_palavra[i][5])
 
-        print(list_res_sext)
+        # print(list_res_sext)
         
-        list_res_set = []
-        for i in range(tamanho):
-            list_res_set.append(matriz_palavra[i][6])
+        # list_res_set = []
+        # for i in range(tamanho):
+        #     list_res_set.append(matriz_palavra[i][6])
 
-        print(list_res_set)
+        # print(list_res_set)
         
-        list_res_oct = []
-        for i in range(tamanho):
-            list_res_oct.append(matriz_palavra[i][7])
+        # list_res_oct = []
+        # for i in range(tamanho):
+        #     list_res_oct.append(matriz_palavra[i][7])
 
-        print(list_res_oct)
+        # print(list_res_oct)
         
-        list_res_nin = []
-        for i in range(tamanho):
-            list_res_nin.append(matriz_palavra[i][8])
+        # list_res_nin = []
+        # for i in range(tamanho):
+        #     list_res_nin.append(matriz_palavra[i][8])
 
-        print(list_res_nin)
+        # print(list_res_nin)
         
-        list_res_ten = []
-        for i in range(tamanho):
-            list_res_ten.append(matriz_palavra[i][9])
+        # list_res_ten = []
+        # for i in range(tamanho):
+        #     list_res_ten.append(matriz_palavra[i][9])
 
-        print(list_res_ten)
+        # print(list_res_ten)
         
-        list_res_ele = []
-        for i in range(tamanho):
-            list_res_ele.append(matriz_palavra[i][10])
+        # list_res_ele = []
+        # for i in range(tamanho):
+        #     list_res_ele.append(matriz_palavra[i][10])
 
-        print(list_res_ele)
-
+        # print(list_res_ele)
 
         #PEGA O ULTIMO ELEMENTO DAS RESPECTIVAS LINHAS
         list_res_fin = []
         for i in range(tamanho):
             list_res_fin.append(matriz_palavra[i][tamanho-1])
 
+        list_primordial = list_res_fin
+        list_concat_alternate = list_res_fin
+        list_res_fin = sorted(list_res_fin)
+        # list_res_final = [list_res_final[i:i + 11] for i in range(0, len(list_res_final), 11)]
+        # for i in range (len(list_res_fin)):
+            # list_concat_alternate = zip(list_concat_alternate, list_res_fin)
+        list_concat_alternate = zip(list_concat_alternate, list_res_fin)
+        
+        for i in range(1, 10):
+            list_concat_alternate = sorted(list_concat_alternate)
+            list_concat_alternate = zip(list_primordial, list_concat_alternate)
+        
+        # list_concat_alternate = list(sorted(list_concat_alternate))
+        list_concat_alternate = list(list_concat_alternate)
+        list_concat_alternate = sorted(list_concat_alternate)
         print(list_res_fin)    
+        string =  str(list_concat_alternate[2])
+        resultado = re.findall("([a-zA-Z0-9])", string)
+        print(resultado)
+        # print(list_concat_alternate[2])
+        resultado = re.findall("([a-zA-Z0-9])", str(resultado))
+        arquivo = open('testando.out', 'w+')
+        arquivo.write(str(resultado))
 
-
+        # for i in range(tamanho):
+        #     # for j in range(tamanho):
+        #     print(list_concat_alternate[i])
+        # # list_concat_alternate = zip(list_res_fin, for i in range(len(list_res_fin)): list_res_final[i])
         #TODA VEZ QUE CHAMAR O METODO CONCAT VAI ACRESCENTAR 1 AO N
         # list_concat_alternate = list(''.join(map(''.join, zip(list_res_fin, list_res_prim))))
-        list_concat_alternate = zip(list_res_fin, list_res_prim, list_res_sec, list_res_terc, list_res_quar, list_res_qui, list_res_sext, list_res_set, list_res_oct, list_res_nin, list_res_ten, list_res_ele)
+        # list_concat_alternate = zip(list_res_fin, list_res_prim, list_res_sec, list_res_terc, list_res_quar, list_res_qui, list_res_sext, list_res_set, list_res_oct, list_res_nin, list_res_ten, list_res_ele)
         # list_concat_alternate = zip(list_concat_alternate, list_res_sec )
         # list_concat_alternate = zip(list_concat_alternate, list_res_terc )
         # QUANDO EU USO ESSE METODO DUAS VEZES, ELE ACABA NÃO FUNCIONANDO CORRETAMENTE
         # list_concat_alternate = list(''.join(map(''.join, zip(list_concat_alternate, list_res_sec ))))
         # n = 3
-        list_concat_alternate = list(list_concat_alternate)
-        # list_concat_alternate = [list_concat_alternate[i:i+n] for i in range(0, len(list_concat_alternate), n)]
-        list_concat_alternate = sorted(list_concat_alternate)
-        # palavra = list(palavra)
-        # for i in range(tamanho):
-        #     for j in range(tamanho):
-        #         if palavra[j] == list_concat_alternate[i][j]:
-        #             linha = i
-        #             print('palavra na lista: ', list_concat_alternate[linha][j], 'palavra:', palavra )
+        # list_concat_alternate = list(list_concat_alternate)
+        # # list_concat_alternate = [list_concat_alternate[i:i+n] for i in range(0, len(list_concat_alternate), n)]
+        # list_concat_alternate = sorted(list_concat_alternate)
+        # # palavra = list(palavra)
+        # # for i in range(tamanho):
+        # #     for j in range(tamanho):
+        # #         if palavra[j] == list_concat_alternate[i][j]:
+        # #             linha = i
+        # #             print('palavra na lista: ', list_concat_alternate[linha][j], 'palavra:', palavra )
 
-        palavra = list(palavra)
-        #IMPRIME BONITINHO
-        for i in range(0, 11):
-            for j in range(0, 11):
-                # if palavra[j] == list_concat_alternate[i][j]:
-                    # linha = i
-                    print (f'[{list_concat_alternate[i][j]}]', end='')
-            print()
-                
+        # palavra = list(palavra)
+        # #IMPRIME BONITINHO
+        # for i in range(0, 11):
+        #     for j in range(0, 11):
+        #         # if palavra[j] == list_concat_alternate[i][j]:
+        #             # linha = i
+        #             print (f'[{list_concat_alternate[i][j]}]', end='')
+        #     print()
+        # print(list_concat_alternate)                
         # print(matriz_palavra)
 
 

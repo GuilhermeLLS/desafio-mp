@@ -5,4 +5,5 @@ palavra = ['abracadabra','aabracadabr', 'raabracadab', 'braabracada', 'abraabrac
 # des.troca('abracadabra')
 # des.change_to_matriz(palavra)
 # des.ler_arquivo()
-des.teste(palavra)
+# des.teste(palavra)
+des.decoder(palavra, 2)
